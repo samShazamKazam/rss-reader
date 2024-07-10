@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect, useRef }  from 'react';
 
 function RefreshFeed({ onRefreshFeed }) {
     const [refreshInterval, setRefreshInterval] = useState(60); // default 60 seconds
+    const intervalRef = useRef(null);
+
+      useEffect(() => {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+        intervalRef.current = setInterval(onRefreshFeed, refreshInterval * 1000);
+        return () => clearInterval(intervalRef.current);
+      }, [refreshInterval]);
 
     return (
-          <button onClick={handleRefreshFeeds}>Refresh Feeds</button>
+        <div>
+          <button onClick={onRefreshFeed}>Refresh Feeds</button>
           <div>
             <label>
               Refresh Interval (seconds):
@@ -15,8 +25,8 @@ function RefreshFeed({ onRefreshFeed }) {
               />
             </label>
           </div>
-          <div>
-            {lastRefreshTime && <p>Last refreshed: {lastRefreshTime}</p>}
-          </div>
+        </div>
     );
 }
+
+export default RefreshFeed;
