@@ -8,7 +8,10 @@
    -   Detail View: Allows users to view the full content of an article within the reader or in a new browser tab.
    -   Mark as Read/Unread: Users can mark articles as read or unread to keep track of what they have or haven't read.
    -   Read Indicators: The reader visually distinguishes between read and unread articles.
-       Add a label for the last refreshed time
+   -   Add a label for the last refreshed time
+       Break down the DOM returned into wrappers
+       collapse the feeds
+       make the text field bigger
 
 
 
