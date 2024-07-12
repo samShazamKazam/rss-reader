@@ -1,45 +1,36 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import ArticleList from './ArticleList.js';
 
 function Feed({ feed, onFeedRemoved  }) {
-    const [readArticles, setReadArticles] = useState(new Set());
+    const apiUrl = process.env.REACT_APP_API_URL;
+
+    const [isCollapsed, setIsCollapsed] = useState(false);
 
     const handleRemoveFeed = async (feedUrl) => {
-        await axios.post('http://localhost:3001/remove-feed', { url: feedUrl });
+        await axios.post(`${apiUrl}/remove-feed`, { url: feedUrl });
         onFeedRemoved(feedUrl);
     };
 
-    const toggleReadStatus = (link) => {
-      setReadArticles((prevReadArticles) => {
-        const newReadArticles = new Set(prevReadArticles);
-        if (newReadArticles.has(link)) {
-          newReadArticles.delete(link);
-        } else {
-          newReadArticles.add(link);
-        }
-        return newReadArticles;
-      });
-    };
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
 
   return (
     <div>
-      <h2>
-        {feed.url}
-        <button onClick={() => handleRemoveFeed(feed.url)}>Remove</button>
-      </h2>
-      <ul>
-        {feed.articles.map((article, idx) => (
-          <li key={idx}>
-                <a href={article.link} target="_blank" rel="noopener noreferrer">
-                  {article.title}
-                </a>
-                <p>{article.pubDate}</p>
-                <button onClick={() => toggleReadStatus(article.link)}>
-                {readArticles.has(article.link) ? 'Mark as Unread' : 'Mark as Read'}
-                </button>
-          </li>
-        ))}
-      </ul>
+      <div className="feed-header">
+          <h2>{feed.url}</h2>
+          <div className="feed-buttons">
+            <button onClick={() => handleRemoveFeed(feed.url)}>Remove</button>
+            <button onClick={toggleCollapse}>{isCollapsed ? 'Expand' : 'Collapse'}</button>
+          </div>
+      </div>
+      <div>
+            {!isCollapsed &&
+                <ArticleList feedUrl={feed.url} articles={feed.articles} />
+            }
+      </div>
     </div>
   );
 }
