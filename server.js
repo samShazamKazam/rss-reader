@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const xml2js = require('xml2js');
 const feedFilePath = 'feeds.json';
 const fs = require('fs');
+let Parser = require('rss-parser');
+
+let parser = new Parser();
 
 const app = express();
 const port = 3001;
@@ -12,19 +15,17 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   next();
 });
 
 const parseRSS = async (url) => {
-  const response = await axios.get(url);
-  const data = await xml2js.parseStringPromise(response.data);
-  return data.rss.channel[0].item.map(item => ({
-    title: item.title[0],
-    link: item.link[0],
-    pubDate: item.pubDate[0],
-    isRead: false
-  }));
+    let feed = await parser.parseURL(url);
+    return feed.items.map( item => ({
+        title: item.title,
+        link: item.link,
+        pubDate: item.pubDate,
+        isRead: false
+    }));
 };
 
 let feeds = [];
@@ -83,7 +84,8 @@ app.post('/add-feed', async (req, res) => {
     res.status(200).json({ message: 'Feed added successfully', feeds });
   } catch (error) {
     res.status(500).json({ message: 'Failed to add feed', error });
-  }});
+  }
+});
 
 app.post('/remove-feed', (req, res) => {
   const { url } = req.body;
@@ -95,14 +97,33 @@ app.get('/feeds', (req, res) => {
   res.status(200).json(feeds);
 });
 
-app.post('/fetch-feed', async (req, res) => {
-  const { url } = req.body;
+app.post('/update-feeds', async (req, res) => {
   try {
-    const response = await axios.get(url);
-    const articles = await parseRSS(response.data);
-    res.json({ url, articles });
+        const updatedFeeds = await Promise.all(
+            feeds.map( async (feed) => {
+                  const oldArticlesMap = {};
+                  feed.articles.forEach(article => {
+                    oldArticlesMap[article.link] = article;
+                  });
+
+                  const fetchedArticles = await parseRSS(feed.url);
+                  const newArticles = fetchedArticles.map(article => {
+                      if (article.link in oldArticlesMap) {
+                          return {
+                           ...article,
+                           isRead: oldArticlesMap[article.link].isRead
+                          };
+                      } else {
+                          return article;
+                      }
+                  });
+
+                  return { url: feed.url, articles: newArticles };
+        }));
+        feeds = updatedFeeds
+        res.status(200).json({ message: 'Feeds updated successfully', feeds: updatedFeeds });
   } catch (error) {
-    res.status(500).send(error.toString());
+         res.status(500).send(error.toString());
   }
 });
 

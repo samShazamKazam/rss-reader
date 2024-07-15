@@ -5,7 +5,7 @@ function ArticleList({ feedUrl, articles }) {
     return (
         <ul>
             { articles.map((article, index) =>
-                <Article key={index} feedUrl={feedUrl} article={article}/>
+                <Article key={article.link} feedUrl={feedUrl} article={article}/>
             )}
         </ul>
     );

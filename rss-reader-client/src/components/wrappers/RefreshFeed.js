@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef }  from 'react';
 
 function RefreshFeed({ onRefreshFeed }) {
-    const [refreshInterval, setRefreshInterval] = useState(60); // default 60 seconds
+    const [refreshInterval, setRefreshInterval] = useState(600); // default 600 seconds
     const intervalRef = useRef(null);
 
       useEffect(() => {

@@ -11,11 +11,21 @@
    -   Add a label for the last refreshed time
    -   Break down the DOM returned into wrappers
    -   collapse the feeds
-       make the text field bigger
-       move "mark as read" button next to the title to the right
-       make "mark as read" smaller
-       add margin to the text fields and buttons
-       move the feed buttons out of the Header tag
+   -    make the text field bigger
+   -    move "mark as read" button next to the title to the right
+   -    make "mark as read" smaller
+   -    add margin to the text fields and buttons
+   -    move the feed buttons out of the Header tag
+
+   -    try catch client calls
+   -    add error field
+   -    CSS style change:
+            - add margin before Mark as Read
+            - move text field to the middle
+        Add README file:
+            - describe features
+            - add installation instructions
+            - add wishlist
 
       instructions
       curl http://localhost:3001/add-feed -H "Content-Type: application/json" -d '{"url":"https://justinpot.com/feed"}'
@@ -27,3 +37,4 @@
 
 https://justinpot.com/feed
 https://bugsfound.medium.com/feed
+https://www.reddit.com/r/antiwork/.rss

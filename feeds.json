@@ -1,18 +1,66 @@
 [
   {
-    "url": "https://bugsfound.medium.com/feed",
+    "url": "https://justinpot.com/feed",
     "articles": [
       {
-        "title": "A PARALLEL MATH PROGRAM USING ANEKATHREADS",
-        "link": "https://bugsfound.medium.com/a-parallel-math-program-using-anekathreads-a047008b3433?source=rss-20eeec33e0ff------2",
-        "pubDate": "Tue, 22 Jun 2021 09:02:28 GMT",
+        "title": "Tech is cool; business is boring.",
+        "link": "https://justinpot.com/tech-is-cool-business-is-boring/",
+        "pubDate": "Fri, 14 Jun 2024 22:55:35 +0000",
+        "isRead": true
+      },
+      {
+        "title": "Watch me be in three meetings at once",
+        "link": "https://justinpot.com/watch-me-be-in-three-meetings-at-once/",
+        "pubDate": "Sat, 01 Jun 2024 16:45:31 +0000",
+        "isRead": true
+      },
+      {
+        "title": "Garbage in garbage out",
+        "link": "https://justinpot.com/garbage-in-garbage-out/",
+        "pubDate": "Sat, 25 May 2024 17:24:27 +0000",
         "isRead": false
       },
       {
-        "title": "CALCULATING PI USING A DARTBOARD #ANEKA",
-        "link": "https://bugsfound.medium.com/calculating-pi-using-a-dartboard-aneka-c4b1eec4b6e4?source=rss-20eeec33e0ff------2",
-        "pubDate": "Tue, 22 Jun 2021 08:57:55 GMT",
+        "title": "“Number go up” isn’t everything",
+        "link": "https://justinpot.com/number-go-up-isnt-everything/",
+        "pubDate": "Sat, 04 May 2024 00:30:17 +0000",
         "isRead": false
+      },
+      {
+        "title": "The life changing magic of shutting up",
+        "link": "https://justinpot.com/the-life-changing-magic-of-shutting-up/",
+        "pubDate": "Wed, 27 Mar 2024 21:44:49 +0000",
+        "isRead": false
+      },
+      {
+        "title": "Startup founders: hire me to be your CEO",
+        "link": "https://justinpot.com/startup-founders-hire-me-to-be-your-ceo/",
+        "pubDate": "Tue, 04 Jan 2022 19:29:18 +0000",
+        "isRead": false
+      },
+      {
+        "title": "In 2020 what we need is utopia, but even Star Trek is jaded",
+        "link": "https://justinpot.com/in-2020-what-we-need-is-utopia-but-even-star-trek-is-jaded/",
+        "pubDate": "Sun, 15 Mar 2020 18:47:57 +0000",
+        "isRead": false
+      },
+      {
+        "title": "Facebook moderators miss key directives because the news feed is terrible",
+        "link": "https://justinpot.com/facebook-moderators-miss-key-directives-because-the-news-feed-is-terrible/",
+        "pubDate": "Wed, 27 Feb 2019 15:43:43 +0000",
+        "isRead": false
+      },
+      {
+        "title": "There are tiny hippos living in your house (and other thoughts)",
+        "link": "https://justinpot.com/there-are-tiny-hippos-living-in-your-house-and-other-thoughts/",
+        "pubDate": "Wed, 25 Jul 2018 21:01:03 +0000",
+        "isRead": false
+      },
+      {
+        "title": "Does the decline of local journalism explain declining trust in government?",
+        "link": "https://justinpot.com/does-the-decline-of-local-journalism-explain-declining-trust-in-government/",
+        "pubDate": "Mon, 05 Mar 2018 15:59:46 +0000",
+        "isRead": true
       }
     ]
   }

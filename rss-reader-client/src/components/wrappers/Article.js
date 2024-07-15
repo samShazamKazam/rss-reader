@@ -6,7 +6,7 @@ function Article({ feedUrl, article }) {
     const [isRead, setIsRead] = useState(article.isRead)
 
     const toggleReadStatus = async (link, readStatus) => {
-        await axios.post(`${apiUrl}/mark-article`, {
+        axios.post(`${apiUrl}/mark-article`, {
           feedUrl: feedUrl,
           articleLink: link,
           readStatus: !readStatus
@@ -18,11 +18,12 @@ function Article({ feedUrl, article }) {
         <li style={{ textDecoration: isRead ? 'line-through' : 'none' }}>
             <a href={article.link} target="_blank" rel="noopener noreferrer">
               {article.title}
+
             </a>
+              <button className="mark_as_read_button" onClick={() => toggleReadStatus(article.link, isRead )}>
+                  { isRead ? 'Mark as Unread' : 'Mark as Read'}
+              </button>
             <p>{article.pubDate}</p>
-            <button onClick={() => toggleReadStatus(article.link, isRead )}>
-                { isRead ? 'Mark as Unread' : 'Mark as Read'}
-            </button>
         </li>
   );
 }
