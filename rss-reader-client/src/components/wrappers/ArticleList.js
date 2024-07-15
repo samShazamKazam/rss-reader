@@ -3,7 +3,7 @@ import Article from './Article.js';
 
 function ArticleList({ feedUrl, articles }) {
     return (
-        <ul>
+        <ul className="article-list">
             { articles.map((article, index) =>
                 <Article key={article.link} feedUrl={feedUrl} article={article}/>
             )}

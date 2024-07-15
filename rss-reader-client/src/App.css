@@ -1,8 +1,14 @@
+
 .feed-header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+}
+
+.refresh-field-interval-input {
+  width: 70px;
+  margin-left: 10px;
 }
 
 .feed-buttons {
@@ -22,8 +28,14 @@
     height: 100%;
 }
 
-.mark_as_read_button {
+.article-list {
+    list-style-type: none;
+}
+
+.mark-as-read-button {
     margin-left: 10px;
+    margin-right: 10px;
+    list-style-type: none;
 }
 
 .error-message {

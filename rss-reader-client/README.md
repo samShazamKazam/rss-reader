@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# RSS Reader
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+RSS reader to fetch and display RSS feeds
 
-## Available Scripts
+# Features
+-   Add Feed: Users can add new RSS feed URLs to the reader to start receiving updates.
+-   Remove Feed: Users can remove RSS feed URLs they no longer wish to follow.
+-   Automatic Refresh: The reader periodically checks for new content and updates the list of articles automatically.
+-   Manual Refresh: Users can manually refresh the feed list to get the latest updates.
+-   List View: Displays a list of articles from the subscribed feeds, usually with the title, publication date, and a brief summary.
+-   Mark as Read/Unread: Users can mark articles as read or unread to keep track of what they have or haven't read.
+-   Read Indicators: The reader visually distinguishes between read and unread articles.
+-   Add a display for the last refreshed time
+-   Expand/collapse the feeds
+-   Add a display for error messages
 
-In the project directory, you can run:
+# Components
+There are two components: the server which keeps track of the feeds and the client/frontend 
+react app which fetches and updates the feed
 
-### `npm start`
+### server
+to run the server
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ ```
+ npm install express axios body-parser rss-parser
+ node server.js
+ ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### client
+to run the client
+ 
+```
+cd rss-reader-client
+npm install axios react-scripts 
+npm start
+```
 
-### `npm test`
+# Improvement Wishlist
+- Saving to a file is fine, but if we want to offer a service, then we would remove saving the feeds to a file and 
+save it to a database. This way the same feed can be shared with multiple users. It can also be updated in a central service.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- There would be a table for the feeds globally shared (of columns ID, url, article, update timestamp) and a table to save the user's feed state (for example Mark as Read) (of columns feed ID, article ID, Read status)
+- The workload of fetching the list of articles for feeds should be distributed among workers 
+which update the feeds in the feed table (content and timestamp). 
+- The client can then periodically fetch the feeds whose update timestamp is after a given last refresh timestamp. 
+- User experience can be improved by adding loading indicators and hover effects

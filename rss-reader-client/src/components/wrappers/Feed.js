@@ -26,7 +26,7 @@ function Feed({ feed, onFeedRemoved  }) {
   return (
     <div>
       <div className="feed-header">
-          <h3>{feed.url}</h3>
+          <h4>{feed.url}</h4>
           <div className="feed-buttons">
             <button onClick={() => handleRemoveFeed(feed.url)}>Remove</button>
             <button onClick={toggleCollapse}>{isCollapsed ? 'Expand' : 'Collapse'}</button>
